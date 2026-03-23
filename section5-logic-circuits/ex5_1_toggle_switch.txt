@@ -1,0 +1,31 @@
+number kon  = 1
+number koff = 1/10
+number dA   = 1/10
+number dB   = 1/10
+number b    = 1
+
+species {A, B, PpA, PBA, PpB, PAB}
+
+amount A   @ 5 M
+amount B   @ 0 M
+amount PpA @ 1 M
+amount PBA @ 0 M
+amount PpB @ 1 M
+amount PAB @ 0 M
+
+B + B + PpA -> {kon}  PBA
+PBA         -> {koff} B + B + PpA
+
+PpA -> {b} PpA + A
+A   -> {dA} #
+
+A + A + PpB -> {kon}  PAB
+PAB         -> {koff} A + A + PpB
+
+PpB -> {b} PpB + B
+B   -> {dB} #
+
+trigger B @ 8 M when time > 100
+trigger A @ 8 M when time > 300
+
+equilibrate for 500

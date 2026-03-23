@@ -1,0 +1,16 @@
+number k1 = 1
+number k2 = 10
+number k3 = 1/10
+
+species {E, S, ES, P}
+
+amount E  @ 1 M
+amount S  @ 10 M
+amount ES @ 0 M
+amount P  @ 0 M
+
+E + S -> {k1} ES
+ES -> {k2} E + S
+ES -> {k3} E + P
+
+equilibrate for 300

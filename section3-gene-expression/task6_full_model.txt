@@ -1,0 +1,16 @@
+number k1 = 0.347
+number k2 = 7.92
+number d1 = 0.139
+number d2 = 0.0198
+
+species {mRNA, Protein}
+
+amount mRNA    @ 0 M
+amount Protein @ 0 M
+
+# -> {k1} mRNA
+mRNA -> {k2} mRNA + Protein
+mRNA -> {d1} #
+Protein -> {d2} #
+
+equilibrate for 300

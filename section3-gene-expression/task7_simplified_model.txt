@@ -1,0 +1,11 @@
+number k  = 19.8
+number d2 = 0.0198
+
+species {Protein}
+
+amount Protein @ 0 M
+
+# -> {k} Protein
+Protein -> {d2} #
+
+equilibrate for 300

@@ -1,0 +1,45 @@
+number kon  = 1
+number koff = 1
+number dA   = 1/10000
+number dC   = 1/10000
+number dB   = 1/10
+number dD   = 1/10
+number b    = 1
+
+species {A, C, PpB, PAB, PCB, B, PpD, PBD, D}
+
+amount A   @ 0 M
+amount C   @ 0 M
+amount PpB @ 1 M
+amount PAB @ 0 M
+amount PCB @ 0 M
+amount B   @ 0 M
+amount PpD @ 1 M
+amount PBD @ 0 M
+amount D   @ 0 M
+
+A + PpB -> {kon}  PAB
+PAB     -> {koff} A + PpB
+
+C + PpB -> {kon}  PCB
+PCB     -> {koff} C + PpB
+
+PpB -> {b} PpB + B
+B   -> {dB} #
+A   -> {dA} #
+C   -> {dC} #
+
+B + PpD -> {kon}  PBD
+PBD     -> {koff} B + PpD
+
+PpD -> {b} PpD + D
+D   -> {dD} #
+
+trigger A @ 4 M when time > 100
+trigger A @ 0 M when time > 250
+trigger C @ 4 M when time > 400
+trigger C @ 0 M when time > 550
+trigger A @ 4 M when time > 700
+trigger C @ 4 M when time > 700
+
+equilibrate for 850
